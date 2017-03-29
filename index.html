@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>创新学堂伙伴</title>
+    <!-- <link rel="shortcut icon" href="./static/favicon.ico"> -->
+    <script src="./static/jquery-3.1.1.min.js"></script>
+    <style type="text/css">
+      @import './static/base.css';
+      body:not(.urming-mobile) {
+        margin: 0 auto;
+        width: 480px;
+        height: auto;
+        border: 1px solid #ccc;
+      }
+      html,body{
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+    <script type="text/javascript">
+
+
+
+      var browser={
+          versions:function(){ 
+            var u = navigator.userAgent; 
+            var ret = {};
+            ret.webKit = u.indexOf('AppleWebKit') > -1;
+                  ret.uc = u.indexOf('UCBrowser') > -1;
+            ret.android = u.indexOf('Android') > -1 || (u.indexOf('UCBrowser')> -1 && u.indexOf('Linux;')> -1);
+            ret.iosMobile = !!navigator.userAgent.match(/iPhone|iPad|iPod/i);
+            ret.mobile = ret.iosMobile || ret.android || !!navigator.userAgent.match(/IEMobile/i) 
+            || !!navigator.userAgent.match(/Opera Mini/i) 
+            || !!navigator.userAgent.match(/BlackBerry/i);
+            return ret;
+               }()
+      };
+
+
+
+      var browserInfo = browser.versions;
+      var classes = [];
+      for(var k in browserInfo){
+          if(browserInfo[k] == true){
+              classes.push('urming-'+k);
+          }
+      }
+      classes = classes.join(' ');
+      $(document.body).addClass(classes);
+      // 适配
+      ;(function(win, doc){
+            function change(){
+                doc.documentElement.style.fontSize=20*doc.documentElement.clientWidth/375+'px';
+            }
+            change();
+
+            win.addEventListener('resize', change, false);
+        })(window, document);
+
+
+      if(!$(document.body).hasClass('urming-mobile')){
+
+        document.documentElement.style.fontSize='26.5px'
+      }
+    </script>
+  </body>
+</html>
